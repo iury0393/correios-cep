@@ -9,7 +9,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Correios',
       theme: ThemeData(),
-      home: CEP(),
+      home: Scaffold(
+        backgroundColor: Color(0xFFEDC306),
+        appBar: AppBar(
+          title: Image.asset('assets/logo_correios.png'),
+          backgroundColor: Color(0xFFF8F3F0),
+        ),
+        body: CEP(),
+      ),
     );
   }
 }
