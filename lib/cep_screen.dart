@@ -1,45 +1,69 @@
 import 'package:flutter/material.dart';
+import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 
-class CEP extends StatelessWidget {
+class CEP extends StatefulWidget {
+  @override
+  _CEPState createState() => _CEPState();
+}
+
+class _CEPState extends State<CEP> {
+  var maskFormatter = new MaskTextInputFormatter(
+      mask: '#####-##', filter: {"#": RegExp(r'[0-9]')});
   @override
   Widget build(BuildContext context) {
-    return Center(
+    return SafeArea(
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.only(top: 50.0, bottom: 300.0),
-            child: Container(
-              child: Text(
-                'Busca de endereço',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                ),
+          Container(
+            child: Text(
+              'Informe seu CEP',
+              style: TextStyle(
+                fontSize: 40.0,
+                fontFamily: 'Source Sans Pro',
+                color: Color(0xFF1A5077),
               ),
             ),
           ),
-          Column(
-            children: <Widget>[
-              Container(
-                child: Text(
-                  'Onde vai digitar o CEP',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
+          Container(
+            color: Colors.white,
+            margin: EdgeInsets.symmetric(vertical: 50.0, horizontal: 50.0),
+            child: Row(
+              children: <Widget>[
+                Expanded(
+                  child: TextField(
+                    inputFormatters: [maskFormatter],
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      icon: Icon(
+                        Icons.search,
+                        color: Color(0xFF1A5077),
+                      ),
+                      hintText: 'CEP',
+                    ),
                   ),
                 ),
-              ),
-              Container(
-                child: Text(
-                  'O botão',
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ],
+              ],
+            ),
           ),
+          Container(
+            child: ButtonTheme(
+              child: RaisedButton(
+                child: const Text(
+                  'Pesquisar',
+                  style: TextStyle(color: Colors.white, fontSize: 20.0),
+                ),
+                color: Color(0xFF1A5077),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(30.0),
+                ),
+                splashColor: Color(0xFFF8F3F0),
+                onPressed: () {
+                  print('Pressionado');
+                },
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         backgroundColor: Color(0xFFEDC306),
         appBar: AppBar(
-          title: Image.asset('assets/logo_correios.png'),
+          title: Image.asset('images/logo_correios.png'),
           backgroundColor: Color(0xFFF8F3F0),
         ),
         body: CEP(),

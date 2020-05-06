@@ -1,4 +1,4 @@
-[![Latest Version on Flutter](https://img.shields.io/badge/Flutter-1.12.13-blue)](https://flutter.dev/docs/get-started/install)  [![Latest Version on Android Studio](https://img.shields.io/badge/Android%20Studio-3.6.1-green)](https://developer.android.com/studio)
+[![Latest Version on Flutter](https://img.shields.io/badge/Flutter-1.12.13-blue)](https://flutter.dev/docs/get-started/install)  [![Latest Version on Android Studio](https://img.shields.io/badge/Android%20Studio-3.6.1-green)](https://developer.android.com/studio) [![Latest Version on Mask Text Input](https://img.shields.io/badge/Mask_Text_Input-1.0.6-blue)](https://pub.dev/packages/mask_text_input_formatter)
 # Correios CEP
 
 
