@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:correioscep/services/cep_data.dart';
-import 'package:correioscep/constants.dart';
 
 class CEP extends StatefulWidget {
   @override
@@ -11,15 +11,63 @@ class CEP extends StatefulWidget {
 class _CEPState extends State<CEP> {
   CEPData cep = CEPData();
   var campoCEP = '';
+  //Mask
   var textEditingController = TextEditingController(text: "12345678");
   var maskFormatter = new MaskTextInputFormatter(
       mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
-  String logradouro;
+  //Variáveis de endereço
+  String adCEP;
+  String adLogradouro;
+  String adComplemento;
+  String adBairro;
+  String adLocalidade;
+  String adUF;
 
   void getAddress(dynamic cepData) {
     setState(() {
-      logradouro = cepData['logradouro'];
-      print(logradouro);
+      adCEP = cepData['cep'];
+      adLogradouro = cepData['logradouro'];
+      adComplemento = cepData['complemento'];
+      adBairro = cepData['bairro'];
+      adLocalidade = cepData['localidade'];
+      adUF = cepData['uf'];
+
+      var alertStyle = AlertStyle(
+          animationType: AnimationType.fromTop,
+          isCloseButton: false,
+          isOverlayTapDismiss: false,
+          descStyle: TextStyle(fontWeight: FontWeight.bold),
+          animationDuration: Duration(milliseconds: 400),
+          alertBorder: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(0.0),
+            side: BorderSide(
+              color: Colors.grey,
+            ),
+          ),
+          titleStyle: TextStyle(
+            fontSize: 30.0,
+            fontFamily: 'Source Sans Pro',
+            color: Color(0xFF1A5077),
+          ),
+          constraints: BoxConstraints.expand(width: 1000));
+      Alert(
+        context: context,
+        style: alertStyle,
+        type: AlertType.success,
+        title: 'Endereço do CEP',
+        desc:
+            'CEP: $adCEP\n Logradouro: $adLogradouro\n Complemento: $adComplemento\n Bairro: $adBairro\n Localidade: $adLocalidade\n UF: $adUF',
+        buttons: [
+          DialogButton(
+            child: Text(
+              "VOLTAR",
+              style: TextStyle(color: Colors.white, fontSize: 20),
+            ),
+            onPressed: () => Navigator.pop(context),
+            color: Color(0xFF1A5077),
+          ),
+        ],
+      ).show();
     });
   }
 
@@ -78,7 +126,15 @@ class _CEPState extends State<CEP> {
                 onPressed: () async {
                   var campoUnmasked = maskFormatter.getUnmaskedText();
                   var cepData = await cep.getCEPData(campoUnmasked);
-                  getAddress(cepData);
+                  if (cepData != null) {
+                    getAddress(cepData);
+                  } else {
+                    Alert(
+                      context: context,
+                      title: "ERRO",
+                      desc: "Digite o cep correto",
+                    ).show();
+                  }
                 },
               ),
             ),

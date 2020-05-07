@@ -1,6 +1,7 @@
-[![Latest Version on Flutter](https://img.shields.io/badge/Flutter-1.12.13-blue)](https://flutter.dev/docs/get-started/install)  [![Latest Version on Android Studio](https://img.shields.io/badge/Android%20Studio-3.6.1-green)](https://developer.android.com/studio) [![Latest Version on Mask Text Input](https://img.shields.io/badge/Mask_Text_Input-1.0.6-blue)](https://pub.dev/packages/mask_text_input_formatter) ![Latest Version on HTTP](https://img.shields.io/badge/HTTP-0.12.0%2B4-blue)](https://pub.dev/packages/http)
+[![Latest Version on Flutter](https://img.shields.io/badge/Flutter-1.12.13-blue)](https://flutter.dev/docs/get-started/install)  [![Latest Version on Android Studio](https://img.shields.io/badge/Android%20Studio-3.6.1-green)](https://developer.android.com/studio) [![Latest Version on Mask Text Input](https://img.shields.io/badge/Mask_Text_Input-1.0.6-blue)](https://pub.dev/packages/mask_text_input_formatter) ![Latest Version on HTTP](https://img.shields.io/badge/HTTP-0.12.0%2B4-blue)](https://pub.dev/packages/http) [![Latest Version on RFlutter](https://img.shields.io/badge/RFlutter-1.0.3-red)](https://pub.dev/packages/rflutter_alert)
 # Correios CEP
 
+![Correios](Correios.gif)
 
 ## Tabela de Conteúdo
 - <a href="#informações">Informações</a>
