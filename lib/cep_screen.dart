@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
+import 'package:correioscep/services/cep_data.dart';
+import 'package:correioscep/constants.dart';
 
 class CEP extends StatefulWidget {
   @override
@@ -7,10 +9,20 @@ class CEP extends StatefulWidget {
 }
 
 class _CEPState extends State<CEP> {
+  CEPData cep = CEPData();
   var campoCEP = '';
   var textEditingController = TextEditingController(text: "12345678");
   var maskFormatter = new MaskTextInputFormatter(
       mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
+  String logradouro;
+
+  void getAddress(dynamic cepData) {
+    setState(() {
+      logradouro = cepData['logradouro'];
+      print(logradouro);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -63,9 +75,10 @@ class _CEPState extends State<CEP> {
                   borderRadius: BorderRadius.circular(30.0),
                 ),
                 splashColor: Color(0xFFF8F3F0),
-                onPressed: () {
+                onPressed: () async {
                   var campoUnmasked = maskFormatter.getUnmaskedText();
-                  print(campoUnmasked);
+                  var cepData = await cep.getCEPData(campoUnmasked);
+                  getAddress(cepData);
                 },
               ),
             ),
