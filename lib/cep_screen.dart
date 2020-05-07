@@ -7,8 +7,10 @@ class CEP extends StatefulWidget {
 }
 
 class _CEPState extends State<CEP> {
+  var campoCEP = '';
+  var textEditingController = TextEditingController(text: "12345678");
   var maskFormatter = new MaskTextInputFormatter(
-      mask: '#####-##', filter: {"#": RegExp(r'[0-9]')});
+      mask: '#####-###', filter: {"#": RegExp(r'[0-9]')});
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -33,6 +35,9 @@ class _CEPState extends State<CEP> {
                 Expanded(
                   child: TextField(
                     inputFormatters: [maskFormatter],
+                    onChanged: (maskFormatter) {
+                      campoCEP = maskFormatter;
+                    },
                     decoration: InputDecoration(
                       border: InputBorder.none,
                       icon: Icon(
@@ -59,7 +64,8 @@ class _CEPState extends State<CEP> {
                 ),
                 splashColor: Color(0xFFF8F3F0),
                 onPressed: () {
-                  print('Pressionado');
+                  var campoUnmasked = maskFormatter.getUnmaskedText();
+                  print(campoUnmasked);
                 },
               ),
             ),
